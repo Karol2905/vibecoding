@@ -1,0 +1,58 @@
+# EcoTrack — Cursor AI Rules
+# Proyecto: Calculadora de Huella de Carbono por Lenguaje Natural
+
+## Identidad del Proyecto
+- Nombre: EcoTrack MVP
+- Stack preferido: Next.js 14 (App Router) + Tailwind CSS + shadcn/ui
+- Alternativa backend: Python / Streamlit si se requiere prototipado rápido
+- Lenguaje principal: TypeScript (frontend), Python (scripts de cálculo)
+
+## Principios de Código
+
+### Calidad
+- Código limpio, legible y con nombres descriptivos en inglés
+- Funciones pequeñas con una sola responsabilidad (SRP)
+- Evitar comentarios obvios; comentar solo el "por qué", no el "qué"
+- Eliminar todo código muerto o console.log antes de entregar
+
+### Arquitectura
+- Modular: separar lógica de negocio, UI y servicios en carpetas distintas
+- Carpeta `/lib` para utilidades y cálculos de CO2
+- Carpeta `/components` para UI reutilizable
+- Carpeta `/app` para rutas de Next.js (App Router)
+- Carpeta `/api` para endpoints serverless
+
+### Estilo de UI
+- Diseño minimalista con paleta verde oscuro (#1B4332) y blanco roto (#F8F9FA)
+- Mobile-first responsive
+- Componentes de shadcn/ui para consistencia visual
+- Iconografía de Lucide React
+
+## Reglas de IA (Instrucciones para el Agente)
+
+1. **Nunca generes código monolítico.** Si un archivo supera 150 líneas, propón dividirlo.
+2. **Siempre proporciona tipos TypeScript explícitos.** Sin `any` salvo casos extremos justificados.
+3. **Al encontrar un error, explica la causa raíz ANTES de proponer el fix.**
+4. **Para el cálculo de CO2**, usa factores de emisión estandarizados:
+   - Carne de res: 27 kg CO2e / kg
+   - Cerdo / pollo: 6-12 kg CO2e / kg
+   - Bus urbano: 0.089 kg CO2e / km por pasajero
+   - Auto particular: 0.21 kg CO2e / km
+   - Vuelo doméstico: 0.255 kg CO2e / km por pasajero
+5. **El parsing de lenguaje natural** debe ser tolerante: acepta variaciones ortográficas y sinónimos en español.
+6. **No instales dependencias pesadas** sin preguntar primero. Prefiere soluciones con la stdlib o librerías ya en el proyecto.
+7. **Cada componente nuevo** debe tener su interfaz de props documentada con JSDoc.
+8. **Al hacer deploy en Replit**, asegúrate de que las variables de entorno estén en `.env.local` y `.env.example`.
+
+## Formato de Respuesta Esperado del Agente
+- Explica brevemente QUÉ vas a hacer antes de mostrar código
+- Usa bloques de código con el lenguaje especificado
+- Al final de cada respuesta, sugiere el siguiente paso lógico
+- Si hay más de una solución posible, menciona los trade-offs
+
+## Prohibiciones
+- No usar `create-react-app` (obsoleto)
+- No usar `var` en JavaScript/TypeScript
+- No usar CSS inline salvo excepciones justificadas
+- No hardcodear claves de API en el código fuente
+- No generar tests mientras estamos en fase MVP (priorizar velocidad)
